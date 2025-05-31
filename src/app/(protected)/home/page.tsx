@@ -6,6 +6,8 @@ import { UserInfo } from '@/components/UserInfo';
 import { Verify } from '@/components/Verify';
 import { ViewPermissions } from '@/components/ViewPermissions';
 import { Marble, TopBar } from '@worldcoin/mini-apps-ui-kit-react';
+import Map from '@/components/Map';
+import { Suspense } from 'react';
 
 export default async function Home() {
   const session = await auth();
@@ -26,11 +28,14 @@ export default async function Home() {
         />
       </Page.Header>
       <Page.Main className="flex flex-col items-center justify-start gap-4 mb-16">
-        <UserInfo />
-        <Verify />
+        {/* <UserInfo /> */}
+        <Suspense fallback={<div>Loading...</div>}>
+          <Map />
+        </Suspense>
+        {/* <Verify />
         <Pay />
         <Transaction />
-        <ViewPermissions />
+        <ViewPermissions /> */}
       </Page.Main>
     </>
   );
